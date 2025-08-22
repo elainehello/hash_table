@@ -46,21 +46,21 @@ t_node *create_node(int key)
 
 void insert(t_hash *ht, int key)
 {
-    int     idx;
-    t_node  *new_node;
+    int idx;
+    t_node *new_node;
 
     if (ht == NULL)
-        return ;
+        return;
     idx = hash(ht, key);
     new_node = create_node(key);
     if (new_node == NULL)
-        return ; 
+        return;
     new_node->next = ht->hash[idx];
     ht->hash[idx] = new_node;
 }
 int search(t_hash *ht, int key)
 {
-    int     idx;
+    int idx;
     t_node *curr;
 
     if (ht == NULL)
@@ -75,15 +75,46 @@ int search(t_hash *ht, int key)
     }
     return (0);
 }
+
+/**
+ * delete - Removes a node with the given key from the hash table.
+ * @param ht: Pointer to the hash table.
+ * @param key: The key to be deleted.
+ *
+ * Iterates through the linked list at the hashed index to find the node
+ * with the matching key. If found, updates the previous node's next pointer
+ * (or the head pointer if it's the first node) to skip the deleted node,
+ * then frees the memory for the deleted node.
+ */
 void delete(t_hash *ht, int key)
 {
+    int idx;
+    t_node *curr;
+    t_node *prev;
 
+    if (ht == NULL)
+        return;
+    idx = hash(ht, key);
+    curr = ht->hash[idx];
+    prev = NULL;
+    while (curr)
+    {
+        if (curr->data == key)
+        {
+            if (prev)
+                prev->next = curr->next;
+            else
+                ht->hash[idx] = curr->next;
+            free(curr);
+            return;
+        }
+        prev = curr;
+        curr = curr->next;
+    }
 }
 void display(t_hash *ht)
 {
-
 }
 void free_hash(t_hash *ht)
 {
-
 }
