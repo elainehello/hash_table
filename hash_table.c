@@ -60,7 +60,20 @@ void insert(t_hash *ht, int key)
 }
 int search(t_hash *ht, int key)
 {
+    int     idx;
+    t_node *curr;
 
+    if (ht == NULL)
+        return (0);
+    idx = hash(ht, key);
+    curr = ht->hash[idx];
+    while (curr)
+    {
+        if (curr->data == key)
+            return (1);
+        curr = curr->next;
+    }
+    return (0);
 }
 void delete(t_hash *ht, int key)
 {
