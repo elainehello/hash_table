@@ -1,5 +1,10 @@
 #include "hash_table.h"
 
+/**
+ * create_table - Allocates and initializes a new hash table.
+ * @param size: The number of buckets in the hash table.
+ * @return: Pointer to the created hash table, or NULL on failure.
+ */
 t_hash *create_table(int size)
 {
     t_hash *hash;
@@ -15,6 +20,10 @@ t_hash *create_table(int size)
     return (hash);
 }
 
+/**
+ * init_bucket - Initializes all buckets in the hash table to NULL.
+ * @param hash: Pointer to the hash table.
+ */
 void init_bucket(t_hash *hash)
 {
     int i;
@@ -27,11 +36,22 @@ void init_bucket(t_hash *hash)
     }
 }
 
+/**
+ * hash - Computes the hash index for a given key.
+ * @param ht: Pointer to the hash table.
+ * @param key: The key to hash.
+ * @return: The computed index.
+ */
 int hash(t_hash *ht, int key)
 {
     return (key % ht->size);
 }
 
+/**
+ * create_node - Allocates and initializes a new node with the given key.
+ * @param key: The key to store in the node.
+ * @return: Pointer to the created node, or NULL on failure.
+ */
 t_node *create_node(int key)
 {
     t_node *new_node;
@@ -44,6 +64,11 @@ t_node *create_node(int key)
     return (new_node);
 }
 
+/**
+ * insert - Inserts a key into the hash table.
+ * @param ht: Pointer to the hash table.
+ * @param key: The key to insert.
+ */
 void insert(t_hash *ht, int key)
 {
     int idx;
@@ -58,6 +83,13 @@ void insert(t_hash *ht, int key)
     new_node->next = ht->hash[idx];
     ht->hash[idx] = new_node;
 }
+
+/**
+ * search - Searches for a key in the hash table.
+ * @param ht: Pointer to the hash table.
+ * @param key: The key to search for.
+ * @return: 1 if found, 0 otherwise.
+ */
 int search(t_hash *ht, int key)
 {
     int idx;
@@ -113,6 +145,10 @@ void delete(t_hash *ht, int key)
     }
 }
 
+/**
+ * free_hash - Frees all memory used by the hash table and its nodes.
+ * @param ht: Pointer to the hash table to be freed.
+ */
 void free_hash(t_hash *ht)
 {
     int i;
@@ -120,7 +156,7 @@ void free_hash(t_hash *ht)
     t_node *tmp;
 
     if (ht == NULL)
-        return ;
+        return;
     i = 0;
     while (i < ht->size)
     {
@@ -129,7 +165,7 @@ void free_hash(t_hash *ht)
         {
             tmp = curr;
             curr = curr->next;
-            free (tmp);
+            free(tmp);
         }
         i++;
     }
