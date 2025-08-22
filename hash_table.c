@@ -112,9 +112,27 @@ void delete(t_hash *ht, int key)
         curr = curr->next;
     }
 }
-void display(t_hash *ht)
-{
-}
+
 void free_hash(t_hash *ht)
 {
+    int i;
+    t_node *curr;
+    t_node *tmp;
+
+    if (ht == NULL)
+        return ;
+    i = 0;
+    while (i < ht->size)
+    {
+        curr = ht->hash[i];
+        while (curr)
+        {
+            tmp = curr;
+            curr = curr->next;
+            free (tmp);
+        }
+        i++;
+    }
+    free(ht->hash);
+    free(ht);
 }
