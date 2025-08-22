@@ -9,11 +9,10 @@ A simple C implementation of a hash table with basic operations: insert, search,
 ├── include
 │   └── hash_table.h
 ├── src
-│   ├── hash_table.c
-│   └── hash_table.o
+│   └── hash_table.c
 ├── main.c
 ├── Makefile
-└── libhashtable.a
+└── README.md
 ```
 
 ## Building
