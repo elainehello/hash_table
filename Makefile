@@ -4,12 +4,10 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 LIB = ar -rcs
 
+SRC_DIR = src
+INCLUDE = -Iinclude
 
-SOURCES = ft_putchar.c ft_putstr.c \
-ft_ptr_address.c ft_putnbr.c ft_put_unbr.c \
-ft_puthex.c ft_printf.c\
-parse.c stack.c \
-
+SOURCES = $(SRC_DIR)/hash_table.c
 OBJ = $(SOURCES:.c=.o)
 
 $(NAME): $(OBJ)

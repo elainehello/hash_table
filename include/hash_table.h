@@ -24,7 +24,7 @@ int hash(t_hash *ht, int key);
 void insert(t_hash *ht, int key);
 int search(t_hash *ht, int key);
 void delete(t_hash *ht, int key);
-void display(t_hash *ht);
+// void display(t_hash *ht);
 void free_hash(t_hash *ht);
 
 #endif
