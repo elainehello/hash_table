@@ -13,7 +13,7 @@ typedef struct s_node
 typedef struct s_hash
 {
     int size;
-    t_hash **hash;
+    t_node **hash;
 } t_hash;
 
 // Function prototypes
