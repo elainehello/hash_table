@@ -17,7 +17,9 @@ typedef struct s_hash
 } t_hash;
 
 // Function prototypes
+t_node *create_node(int key);
 t_hash *create_table(int size);
+void init_bucket(t_hash *hash);
 int hash(t_hash *ht, int key);
 void insert(t_hash *ht, int key);
 int search(t_hash *ht, int key);
